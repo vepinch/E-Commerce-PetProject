@@ -28,12 +28,23 @@ namespace ECommerceStore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //DB using
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            
+
+
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+                {
+                    options.Cookie.Name = ".ECommerceShop.Session";
+                    options.Cookie.IsEssential = true;
+                    options.IdleTimeout = TimeSpan.FromMinutes(5);
+                });
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -59,6 +70,9 @@ namespace ECommerceStore
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSession();
+            app.UseCookiePolicy();
 
             app.UseEndpoints(endpoints =>
             {

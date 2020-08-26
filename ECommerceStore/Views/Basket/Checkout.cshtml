@@ -1,0 +1,44 @@
+﻿@model ECommerceStore.Models.Order;
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@{
+    ViewData["Title"] = "Checkout";
+}
+<h1>Checkout</h1>
+
+<div class="container-fluid">
+    <form method="post">
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="User">Email</label>
+            </div>
+            <div class="col-9">
+                <input asp-for="User" class="form-control" />
+                <span asp-validation-for="User" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="Address">Address</label>
+            </div>
+            <div class="col-9">
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="ContactPhone">Phone</label>
+            </div>
+            <div class="col-9">
+                <input asp-for="ContactPhone" class="form-control" />
+                <span asp-validation-for="ContactPhone" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-3 offset-1">
+                <button type="submit" class="btn btn-primary form-control">Checkout</button>
+            </div>
+        </div>
+    </form>
+</div>

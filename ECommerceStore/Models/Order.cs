@@ -11,8 +11,8 @@ namespace ECommerceStore.Models
         public string User { get; set; }
         public string Address { get; set; }
         public string ContactPhone { get; set; }
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
+        public string BasketId { get; set; }
+        public string Basket { get; set; }
 
     }
 }
